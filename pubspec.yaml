@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  analyzer: '>=0.37.1+1'
+  analyzer: any
   build: '>=1.1.6'
   source_gen: '>=0.9.4+3'
   build_config: '>=0.4.1+1'

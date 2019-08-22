@@ -11,7 +11,7 @@ builders:
   collector:
     import: 'package:fluro_annotation_generator/src/builder.dart'
     builder_factories: ['collector']
-    build_extensions: { '.dart': ['.g.dart'] }
+    build_extensions: { '.dart': ['.fluro_annotation_generator_invalid.dart'] }
     auto_apply: dependents
     build_to: cache
     runs_before: ['fluro_annotation_generator|writer']

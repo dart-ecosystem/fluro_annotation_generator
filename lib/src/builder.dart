@@ -5,7 +5,7 @@ import 'package:source_gen/source_gen.dart';
 
 Builder collector(BuilderOptions options) => LibraryBuilder(
       RouteCollector(),
-      generatedExtension: '.g.dart',
+      generatedExtension: '.fluro_annotation_generator_invalid.dart',
     );
 
 Builder writer(BuilderOptions options) => LibraryBuilder(
