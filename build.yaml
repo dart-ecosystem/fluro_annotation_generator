@@ -1,0 +1,23 @@
+# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+targets:
+  $default:
+    builders:
+      fluro_annotation_generator|collector:
+        enabled: true
+        generate_for:
+          exclude: ['**.g.dart', '*.rua_internal.dart', 'lib/generated/**']
+
+builders:
+  collector:
+    import: 'package:fluro_annotation_generator/src/builder.dart'
+    builder_factories: ['collector']
+    build_extensions: { '.dart': ['.g.dart'] }
+    auto_apply: dependents
+    build_to: cache
+    runs_before: ['fluro_annotation_generator|writer']
+  writer:
+    import: 'package:fluro_annotation_generator/src/builder.dart'
+    builder_factories: ['writer']
+    build_extensions: { '.dart': ['.router.g.dart'] }
+    auto_apply: dependents
+    build_to: source

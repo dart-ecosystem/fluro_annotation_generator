@@ -1,0 +1,3 @@
+class EnableFluroRouter {
+  const EnableFluroRouter();
+}
