@@ -14,7 +14,6 @@ class RouteCollector extends GeneratorForAnnotation<FRoute> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) async {
-    // imports
     final String path = assetToPackageUrl(buildStep.inputId.uri).toString();
     ImportObject importObject = ImportManager.register(path);
 
