@@ -5,8 +5,8 @@
 // **************************************************************************
 
 import 'package:fluro/fluro.dart' as fluro;
-import "package:demo/src/page1.dart" as id1;
-import "package:demo/src/page2.dart" as id2;
+import "package:demo/src/page2.dart" as id1;
+import "package:demo/src/page1.dart" as id2;
 import "package:demo/src/page3.dart" as id3;
 
 fluro.Router createFluroRouter({
@@ -14,13 +14,13 @@ fluro.Router createFluroRouter({
 }) {
   var router = fluro.Router();
   router.define(
-    "/",
-    handler: fluro.Handler(handlerFunc: (_, para) => id1.Page1()),
-    transitionType: defaultTransitionType,
+    "/page/2",
+    handler: fluro.Handler(handlerFunc: (_, para) => id1.Page2()),
+    transitionType: fluro.TransitionType.fadeIn,
   );
   router.define(
-    "/page/2",
-    handler: fluro.Handler(handlerFunc: (_, para) => id2.Page2()),
+    "/",
+    handler: fluro.Handler(handlerFunc: (_, para) => id2.Page1()),
     transitionType: defaultTransitionType,
   );
   router.define(

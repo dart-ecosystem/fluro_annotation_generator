@@ -17,12 +17,32 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
     final String path = assetToPackageUrl(buildStep.inputId.uri).toString();
     ImportObject importObject = ImportManager.register(path);
 
+    final String transitionTypeValue = [
+      "native",
+      "nativeModal",
+      "inFromLeft",
+      "inFromRight",
+      "inFromBottom",
+      "fadeIn",
+      "custom", // if using custom then you must also provide a transition
+      "material",
+      "materialFullScreenDialog",
+      "cupertino",
+      "cupertinoFullScreenDialog",
+    ].firstWhere(
+      (type) =>
+          annotation.peek("transitionType")?.objectValue?.getField(type) !=
+          null,
+      orElse: () => null,
+    );
+
     // routes
     final String url = annotation.peek("url").stringValue;
     RouteObject routeObject = RouteObject(
       url: url,
       className: element.name,
       classPrefix: importObject.prefix,
+      transitionType: transitionTypeValue,
     );
     RouteManager.register(routeObject);
   }
