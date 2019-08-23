@@ -1,6 +1,6 @@
 import 'package:build/build.dart';
-import 'package:fluro_annotation_generator/src/writer/route_writer.dart';
 import 'package:fluro_annotation_generator/src/collector/route_collector.dart';
+import 'package:fluro_annotation_generator/src/writer/route_writer.dart';
 import 'package:source_gen/source_gen.dart';
 
 Builder collector(BuilderOptions options) => LibraryBuilder(

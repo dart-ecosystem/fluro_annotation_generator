@@ -19,7 +19,6 @@ router.define(
   "$url",
   handler: fluro.Handler(handlerFunc: (_, para) => $classFullName()),
   transitionType: defaultTransitionType,
-);
-    ''';
+);''';
   }
 }

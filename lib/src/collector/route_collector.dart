@@ -1,13 +1,13 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:fluro_annotation_generator/src/annotation/f_route.dart';
+import 'package:fluro_annotation_generator/src/annotation/base_annotation.dart';
 import 'package:fluro_annotation_generator/src/manager/import_manager.dart';
 import 'package:fluro_annotation_generator/src/manager/route_manager.dart';
 import 'package:fluro_annotation_generator/src/object/import_object.dart';
 import 'package:fluro_annotation_generator/src/object/route_object.dart';
 import 'package:source_gen/source_gen.dart';
 
-class RouteCollector extends GeneratorForAnnotation<FRoute> {
+class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
   @override
   generateForAnnotatedElement(
     Element element,

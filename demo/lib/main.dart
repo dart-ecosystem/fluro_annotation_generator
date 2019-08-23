@@ -1,8 +1,7 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import 'generated/fluro_router.dart';
-import 'package:fluro_annotation_generator/fluro_annotation_generator.dart';
+import 'package:fluro_annotation_generator/src/annotation/enable_fluro_router.dart';
 
 void main() => runApp(MyApp());
 
