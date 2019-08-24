@@ -1,7 +1,8 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:fluro_annotation_generator/src/annotation/f_route.dart';
+import 'package:fluro_annotation_generator/fluro_annotation_generator.dart';
 
-@FRoute("/page/3")
+@FRoute("/page/3", handlerType: HandlerType.function)
 class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
