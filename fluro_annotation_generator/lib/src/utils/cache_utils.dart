@@ -1,0 +1,49 @@
+abstract class CacheUtils {
+  static String encode({
+    String path,
+    String handlerPath,
+    String url,
+    String className,
+    String transitionType,
+    String handlerType,
+    String handlerFuncName,
+  }) {
+    return _encodeString([
+      path,
+      handlerPath,
+      url,
+      className,
+      transitionType,
+      handlerType,
+      handlerFuncName,
+      "-----end-----"
+    ].join("\n"));
+  }
+
+  static List<String> decode(String content) {
+    return _decodeString(content.split("-----end-----").first)
+        .split("\n")
+        .map((e) => e == "null" ? null : e)
+        .toList();
+  }
+
+  static String _encodeString(String content) {
+    return content
+        .split("\n")
+        .where((e) => e != "")
+        .map((e) => "//> $e")
+        .join("\n");
+  }
+
+  static String _decodeString(String content) {
+    return content
+        .split("\n")
+        .where((e) => e.startsWith("//> "))
+        .map((e) => e.replaceFirst("//> ", ""))
+        .join("\n");
+  }
+
+  static String cleanUp(String content) {
+    return content.split("\n").where((e) => e.startsWith("//> ")).join("\n");
+  }
+}

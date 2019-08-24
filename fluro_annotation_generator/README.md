@@ -5,6 +5,10 @@ Enable annotation support for fluro, which automatically generate fluro routes f
 1. decorate route with `@FRoute()`
 2. decorate entry widget with `@EnableFluroRouter()`
 
+## Rule
+1. all optional parameters are not required
+2. route should have a no-argument constructor or a single-argument constructor which accepts Map<String, List<String>>
+
 ## Example
 ```dart
 // file: mail.dart
@@ -27,7 +31,12 @@ class MyApp extends StatelessWidget {
 }
 
 // file: page1.dart
-@FRoute("/")
+@FRoute(
+  "/", 
+  // transitionType: TransitionType.native,
+  // handlerType: HandlerType.route,
+  // handlerFunc: (BuildContext ctx, Map<String, List<String>> parameters) => Page1(),
+)
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,3 +44,7 @@ class Page1 extends StatelessWidget {
   }
 }
 ```
+
+## Recipe
+### 1. Set default transition effect
+TBD
