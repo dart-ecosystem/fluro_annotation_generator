@@ -1,3 +1,6 @@
+## 0.3.0
+- Supports customized handler type and handler function.
+
 ## 0.2.1
 - Optimize code
 - Change default transition to fluro default transition.
