@@ -1,10 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:fluro_annotation_generator/src/annotation/base_annotation.dart';
-import 'package:fluro_annotation_generator/src/manager/import_manager.dart';
-import 'package:fluro_annotation_generator/src/manager/route_manager.dart';
-import 'package:fluro_annotation_generator/src/object/import_object.dart';
-import 'package:fluro_annotation_generator/src/object/route_object.dart';
+import 'package:fluro_annotation_generator/src/utils/cache_utils.dart';
 import 'package:source_gen/source_gen.dart';
 
 class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
@@ -15,7 +12,6 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
     BuildStep buildStep,
   ) async {
     final String path = assetToPackageUrl(buildStep.inputId.uri).toString();
-    ImportObject importObject = ImportManager.register(path);
 
     // transition type
     final String transitionTypeValue = [
@@ -51,22 +47,18 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
         ? null
         : assetToPackageUrl(handlerFuncElement?.source?.uri);
     final String handlerFuncName = handlerFuncElement?.name;
-    final String handlerFuncPrefix = handlerFuncUri == null
-        ? null
-        : ImportManager.register(handlerFuncUri.toString()).prefix;
-
     // routes
     final String url = annotation.peek("url").stringValue;
-    RouteObject routeObject = RouteObject(
+
+    return CacheUtils.encode(
+      path: path,
+      handlerPath: handlerFuncUri?.toString(),
       url: url,
       className: element.name,
-      classPrefix: importObject.prefix,
       transitionType: transitionTypeValue,
       handlerType: handlerTypeValue,
       handlerFuncName: handlerFuncName,
-      handlerFuncPrefix: handlerFuncPrefix,
     );
-    RouteManager.register(routeObject);
   }
 }
 
