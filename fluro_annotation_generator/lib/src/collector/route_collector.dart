@@ -17,6 +17,7 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
     final String path = assetToPackageUrl(buildStep.inputId.uri).toString();
     ImportObject importObject = ImportManager.register(path);
 
+    // transition type
     final String transitionTypeValue = [
       "native",
       "nativeModal",
@@ -36,6 +37,24 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
       orElse: () => null,
     );
 
+    // handler type
+    final String handlerTypeValue = ["route", "function"].firstWhere(
+      (type) =>
+          annotation.peek("handlerType")?.objectValue?.getField(type) != null,
+      orElse: () => null,
+    );
+
+    // handler function
+    final Element handlerFuncElement =
+        annotation.peek("handlerFunc")?.objectValue?.type?.element;
+    final Uri handlerFuncUri = handlerFuncElement?.source?.uri == null
+        ? null
+        : assetToPackageUrl(handlerFuncElement?.source?.uri);
+    final String handlerFuncName = handlerFuncElement?.name;
+    final String handlerFuncPrefix = handlerFuncUri == null
+        ? null
+        : ImportManager.register(handlerFuncUri.toString()).prefix;
+
     // routes
     final String url = annotation.peek("url").stringValue;
     RouteObject routeObject = RouteObject(
@@ -43,6 +62,9 @@ class RouteCollector extends GeneratorForAnnotation<FRouteBase> {
       className: element.name,
       classPrefix: importObject.prefix,
       transitionType: transitionTypeValue,
+      handlerType: handlerTypeValue,
+      handlerFuncName: handlerFuncName,
+      handlerFuncPrefix: handlerFuncPrefix,
     );
     RouteManager.register(routeObject);
   }

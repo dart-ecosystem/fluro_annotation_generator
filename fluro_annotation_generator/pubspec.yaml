@@ -1,7 +1,9 @@
 name: fluro_annotation_generator
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-homepage: https://www.example.com
+description: >
+  Enable annotation support for fluro,
+  which automatically generate fluro routes for you.
+version: 0.2.1
+homepage: https://github.com/copydog/fluro_annotation_generator
 author: patrick.z <775150@qq.com>
 
 environment:
@@ -12,16 +14,16 @@ dependencies:
   flutter:
     sdk: flutter
   analyzer: any
-  build: '>=1.1.6'
-  source_gen: '>=0.9.4+3'
-  build_config: '>=0.4.1+1'
+  build: any
+  source_gen: any
+  build_config: any
   fluro: any
 #  path: ^1.6.0
 
 dev_dependencies:
   pedantic: ^1.7.0
   test: ^1.6.0
-  build_runner: '>=1.6.6'
+  build_runner: any
 
 flutter:
   uses-material-design: false

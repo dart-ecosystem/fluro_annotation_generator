@@ -1,8 +1,11 @@
+import 'package:demo/src/page2.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:fluro_annotation_generator/fluro_annotation_generator.dart';
 
-@FRoute("/page/3", handlerType: HandlerType.function)
+Widget handler(BuildContext _, Map<String, List<String>> para) => Page2();
+
+@FRoute("/page/3", handlerType: HandlerType.function, handlerFunc: handler)
 class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
