@@ -7,8 +7,13 @@ abstract class TemplateUtils {
     List<String> importTemplates = [];
     List<String> routeTemplates = [];
     ImportHelper importHelper = ImportHelper();
+    List<List<String>> newCaches = [];
     for (String cache in caches) {
-      List<String> decodedCache = CacheUtils.decode(cache);
+      newCaches.addAll(CacheUtils.decodeAll(cache));
+    }
+
+    for (List<String> cache in newCaches) {
+      List<String> decodedCache = cache;
       // register path
       String path = decodedCache[0];
       final pathImport = importHelper.addPath(path);
