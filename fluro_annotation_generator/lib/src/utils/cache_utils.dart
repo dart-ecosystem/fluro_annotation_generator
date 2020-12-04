@@ -19,6 +19,16 @@ abstract class CacheUtils {
       "-----end-----"
     ].join("\n"));
   }
+  
+  static List<List<String>> decodeAll(String content) {
+    List<List<String>> res = [];
+    List<String> contents = content.split("-----end-----");
+    contents.removeLast();
+    for (String c in contents) {
+      res.add(decode(c));
+    }
+    return res;
+  }
 
   static List<String> decode(String content) {
     return _decodeString(content.split("-----end-----").first)
